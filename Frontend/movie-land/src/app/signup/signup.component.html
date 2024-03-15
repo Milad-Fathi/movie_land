@@ -1,19 +1,6 @@
-<mat-card class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28">
-    <mat-card-header>
-        <mat-card-title>
-            <span class="text-2xl font-semibold">
-                Sign Up
-            </span>
-        </mat-card-title>
-     </mat-card-header>
-     <mat-card-content>
-        <div>
-            <mat-form-field>
-                <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-        </div>
-     </mat-card-content>
-</mat-card>
+<div class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
+    <span class="text-2xl font-semibold text-slate-50 mb-10">ثبت نام</span>
+    <input  class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" 9123456789" [type]="'text'">    
+    <input  class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" رمز عبور" [type]="hide ? 'password' : 'text'">
+    <button mat-raised-button color="primary" class="text-2xl font-semibold text-slate-50">ورود</button>
+</div>

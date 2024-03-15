@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 
 
 import { NavbarComponent } from './navbar/navbar.component';
@@ -29,7 +30,8 @@ import { SignupComponent } from './signup/signup.component';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
