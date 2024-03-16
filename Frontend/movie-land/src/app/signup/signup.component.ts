@@ -15,6 +15,7 @@ export class SignupComponent {
     password: ''
   }
   constructor(private authService: AuthService){}
+  
   login(){
     this.authService.login({phonenumber: this.user.phonenumber, password: this.user.password}).subscribe(
       data => {
