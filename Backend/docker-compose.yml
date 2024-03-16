@@ -10,6 +10,7 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 3000
     depends_on:
      - postgresql
+     - redis
     env_file:
      - .env
   postgresql:
@@ -24,11 +25,22 @@ services:
      - '5432:5432'
    volumes: 
      - db:/var/lib/postgresql/data
+  redis:
+    container_name: redis_db
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    # command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
  
 volumes:
  db:
-   driver: local
-
+  driver: local
+ cache:
+  driver: local
 
 
 
