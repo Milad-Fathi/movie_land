@@ -1,8 +1,26 @@
 <app-navbar></app-navbar>
-<div class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
+<div *ngIf="!is_code_sended" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
     <span class="text-2xl font-semibold text-slate-50 mb-10">ثبت نام</span>
     <input [ngModel]="user.phonenumber" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" 9123456789">    
     <input class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" رمز عبور" [type]="hide ? 'password' : 'text'">
     <button mat-raised-button color="primary" (click)="login()" class="text-2xl font-semibold text-slate-50">ورود</button>
 </div>
+
+<div *ngIf="is_code_sended" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
+    <input type="text" placeholder=" کد تایید" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96">
+    <button mat-raised-button color="primary" (click)="submitValidationCode()" class="text-2xl font-semibold text-slate-50">ارسال کد تایید</button>
+    <mat-card *ngIf="!time_is_finished" class="mt-10">
+        <mat-card-content>
+            <p class="">زمان باقیمانده: {{remainingTime }} ثانیه</p>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="time_is_finished" class="mt-10">
+        <mat-card-content class="bg-red-600 border border-red-300 text-white px-4 py-3 rounded relative">
+            <strong class="font-bold">هشدار :</strong>
+            <span class="block sm:inline">زمان شما به پایان رسید </span>
+        </mat-card-content>
+    </mat-card>
+</div>
+
 <app-footer></app-footer>
