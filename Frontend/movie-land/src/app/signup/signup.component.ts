@@ -23,11 +23,11 @@ export class SignupComponent {
   }
   constructor(private authService: AuthService){}
   
-  login(){
+  signup(){
     this.is_code_sended = true
     this.startTimer()
 
-    this.authService.login({phonenumber: this.user.phonenumber, password: this.user.password}).subscribe(
+    this.authService.signup({phonenumber: this.user.phonenumber, password: this.user.password}).subscribe(
       data => {
         console.log(data)
       },

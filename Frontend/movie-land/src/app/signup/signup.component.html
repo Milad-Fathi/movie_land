@@ -3,7 +3,7 @@
     <span class="text-2xl font-semibold text-slate-50 mb-10">ثبت نام</span>
     <input [ngModel]="user.phonenumber" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" 9123456789">    
     <input class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" رمز عبور" [type]="hide ? 'password' : 'text'">
-    <button mat-raised-button color="primary" (click)="login()" class="text-2xl font-semibold text-slate-50">ورود</button>
+    <button mat-raised-button color="primary" (click)="signup()" class="text-2xl font-semibold text-slate-50">ورود</button>
 </div>
 
 <div *ngIf="is_code_sended" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
