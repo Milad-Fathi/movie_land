@@ -35,7 +35,7 @@ services:
     volumes:
       - cache:/data
   nginx:
-    build: ./nginx/Dockerfile
+    build: ./nginx/.
     ports:
       - '80:80'
     depends_on:
