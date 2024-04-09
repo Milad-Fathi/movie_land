@@ -25,7 +25,7 @@ r = redis.Redis(connection_pool=pool)
 
 
 router = APIRouter(
-    prefix='/auth',
+    prefix='api/auth',
     tags=['auth']
 )
 
