@@ -205,7 +205,7 @@ async def read_all_users(username:str,db:db_dependency):
 
 
 # to activate  user/admin
-@router.put("activate_user/",status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/activate_user/",status_code=status.HTTP_204_NO_CONTENT)
 async def activate_person(db: db_dependency,
                           userid: str,
                           code: str):
