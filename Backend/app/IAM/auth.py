@@ -67,8 +67,6 @@ class Token(BaseModel):
 
 
 
-
-
 # **************************different**********************************************************************
 # To check if person's username and password is correct
 def authenticate_user(user_name: str, password: str, db):
