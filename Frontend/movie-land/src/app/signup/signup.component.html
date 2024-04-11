@@ -7,6 +7,7 @@
 </div>
 
 <div *ngIf="is_code_sended" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
+    <span class="text-2xl font-semibold text-slate-50 mb-10">کد تایید</span>
     <input type="text" placeholder=" کد تایید" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96">
     <button mat-raised-button color="primary" (click)="submitValidationCode()" class="text-2xl font-semibold text-slate-50">ارسال کد تایید</button>
     <mat-card *ngIf="!time_is_finished" class="mt-10">
