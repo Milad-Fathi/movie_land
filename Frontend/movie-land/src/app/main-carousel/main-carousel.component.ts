@@ -20,13 +20,13 @@ export class MainCarouselComponent implements OnInit {
     };
     this.slides[1] = {
       id: 1,
-      src: 'assets/img/Screenshot 2024-03-18 141343.png',
+      src: 'assets/img/Zed-Poster.jpg',
       title: 'Second slide',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
     this.slides[2] = {
       id: 2,
-      src: 'assets/img/Screenshot 2024-01-11 105630.png',
+      src: 'assets/img/4118087.jpg',
       title: 'Third slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
