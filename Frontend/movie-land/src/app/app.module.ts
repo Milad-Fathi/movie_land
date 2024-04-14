@@ -12,12 +12,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 
+import { CarouselModule } from '@coreui/angular';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { MainCarouselComponent } from './main-carousel/main-carousel.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     FooterComponent,
     SignupComponent,
     LoginComponent,
-    MainPageComponent
+    MainPageComponent,
+    MainCarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
