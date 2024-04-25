@@ -20,6 +20,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MainCarouselComponent } from './main-carousel/main-carousel.component';
+import { MiniCardComponent } from './mini-card/mini-card.component';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { MainCarouselComponent } from './main-carousel/main-carousel.component';
     LoginComponent,
     MainPageComponent,
     MainCarouselComponent,
+    MiniCardComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
