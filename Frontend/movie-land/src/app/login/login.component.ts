@@ -9,14 +9,16 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   user: User = {
-    phonenumber: '',
-    password: ''
-  }
+    phonenumber: 0,
+    email: '',
+    user_name: '',
+    password: '',
 
+  }
   constructor(private authServices: AuthService){}
 
   login(){
-    this.authServices.login({phonenumber: this.user.phonenumber, password: this.user.password}).subscribe(
+    this.authServices.login({user_name: this.user.user_name, email: this.user.email, phonenumber: this.user.phonenumber, plain_text_password: this.user.password}).subscribe(
       data => {
         console.log(data)
       },
