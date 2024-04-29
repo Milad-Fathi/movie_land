@@ -18,8 +18,11 @@ export class SignupComponent {
   time_is_finished = false
 
   user: User = {
-    phonenumber: '',
-    password: ''
+    phonenumber: 0,
+    email: '',
+    user_name: '',
+    password: '',
+
   }
   constructor(private authService: AuthService){}
   
@@ -27,7 +30,7 @@ export class SignupComponent {
     this.is_code_sended = true
     this.startTimer()
 
-    this.authService.signup({phonenumber: this.user.phonenumber, password: this.user.password}).subscribe(
+    this.authService.signup({user_name: this.user.user_name, email: this.user.email, phonenumber: this.user.phonenumber, plain_text_password: this.user.password}).subscribe(
       data => {
         console.log(data)
       },
