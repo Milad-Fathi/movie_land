@@ -1,7 +1,7 @@
 from bson import objectid
 from fastapi import status, File, UploadFile
 from typing import Dict
-from app.models import Film
+from app.models import Film, FilmCreate
 from .utils import getResponse, riseHttpExceptionIfNotFound
 from ..helper.save_picture import save_picture
 from ..services import filmService as service
@@ -24,15 +24,17 @@ async def getById(id):
     return await resultVerification(id)
 
 
-# @filmRoutes.post(base, response_model=None)
-# async def InsertFilm(data: Film):
-#     return await service.InsertFilm(data)
+@filmRoutes.post(base, response_model=None)
+async def insert_film(film: FilmCreate):
+    # Assuming you have a service function that inserts the film and returns the inserted film
+    inserted_film = await service.InsertFilm(film)
+    return inserted_film
 
-# @filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
-# async def updateFilm(id, data: Film):
-#     await resultVerification(id)
-#     done : bool = await service.updateFilm(id,data);
-#     return getResponse(done, errorMessage="An error occurred while editing the film information.")
+@filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
+async def updateFilm(id, data: Film):
+    await resultVerification(id)
+    done : bool = await service.updateFilm(id,data);
+    return getResponse(done, errorMessage="An error occurred while editing the film information.")
 
 
 @filmRoutes.delete(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
@@ -45,7 +47,7 @@ async def deleteFilm(id):
 @filmRoutes.post(UploadImage+'{id}', status_code=status.HTTP_204_NO_CONTENT)
 async def uploadFilmImage(id: str, file: UploadFile = File(...)):
     result = await resultVerification(id)
-    imageUrl = save_picture(file=file, folderName='film', fileName=result['name'])
+    imageUrl = save_picture(file=file, folderName='film', fileName=result['title'])
     done = await service.savePicture(id, imageUrl)
     return getResponse(done, errorMessage="An error occurred while saving film image.")
 
