@@ -1,52 +1,75 @@
-version: "3.10"
+version: '3.10'
+
 services:
   web:
-    image: movieland
     build: .
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
       - .:/code
     command: uvicorn app.main:app --host 0.0.0.0 --port 3000
     depends_on:
-     - postgresql
-     - redis
+      - postgresql
+      - redis
+      - mongodb
     env_file:
-     - .env
+      - .env
+      - mongo.env
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - shared-network
+
   postgresql:
-   container_name: pg-db
-   image: postgres:15
-   restart: always
-   environment:
-     - POSTGRES_USER=postgres
-     - POSTGRES_PASSWORD=${DB_PASSWORD}
-     - POSTGRES_DB=MovieLandDatabase
-   ports:
-     - '5432:5432'
-   volumes: 
-     - db:/var/lib/postgresql/data
+    container_name: pg-db
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=MovieLandDatabase
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+    networks:
+      - shared-network
+
   redis:
     container_name: redis_db
     image: redis
     restart: always
     ports:
       - '6379:6379'
-    # command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
       - cache:/data
+    networks:
+      - shared-network
+
   nginx:
     build: ./nginx/.
     ports:
       - '80:80'
     depends_on:
       - web
+    networks:
+      - shared-network
 
- 
+networks:
+  shared-network:
+    driver: bridge
+
 volumes:
- db:
-  driver: local
- cache:
-  driver: local
-
-
-
+  db:
+    driver: local
+  cache:
+    driver: local
+  mongo-data:
+    driver: local

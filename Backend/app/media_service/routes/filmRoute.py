@@ -1,5 +1,6 @@
 from bson import objectid
 from fastapi import status, File, UploadFile
+from typing import Dict
 from app.models import Film
 from .utils import getResponse, riseHttpExceptionIfNotFound
 from ..helper.save_picture import save_picture
@@ -14,7 +15,7 @@ _notFoundMessage = "Could not find user with the given Id."
 
 
 @filmRoutes.get(base)
-async def getAll():
+async def getAllFilm():
     return await service.getAllFilm()
 
 
@@ -22,10 +23,10 @@ async def getAll():
 async def getById(id):
     return await resultVerification(id)
 
+
 @filmRoutes.post(base)
 async def InsertFilm(data: Film):
     return await service.InsertFilm(data)
-
 
 @filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
 async def updateFilm(id, data: Film):

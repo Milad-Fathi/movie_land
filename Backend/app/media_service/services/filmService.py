@@ -1,31 +1,31 @@
 from bson import ObjectId
 from ..config.db import db
-from models import Film
+from app.models import Film
 from ..schemas.serializeObject import serializeDict, serializeList
 
 
-async def getAllUser() -> list:
-    return serializeList(db.users.find())
+async def getAllFilm() -> list:
+    return serializeList(db.film.find())
 
 
 async def getById(id):
-    return serializeDict(db.users.find_one({"_id": ObjectId(id)}))    
+    return serializeDict(db.film.find_one({"_id": ObjectId(id)}))    
 
 
-async def InsertUser(data: Film):
-    result = db.users.insert_one(dict(data))
-    return serializeDict(db.users.find_one({"_id": ObjectId(result.inserted_id)}))
+async def InsertFilm(data: Film):
+    result = db.film.insert_one(dict(data))
+    return serializeDict(db.film.find_one({"_id": ObjectId(result.inserted_id)}))
 
 
-async def updateUser(id, data: Film) -> bool:
-    db.users.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(data)})
+async def updateFilm(id, data: Film) -> bool:
+    db.film.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(data)})
     return True
 
 async def savePicture(id, imageUrl: str) -> bool:
-    db.users.find_one_and_update({"_id": ObjectId(id)}, {"$set": { "imageUrl": imageUrl }})
+    db.film.find_one_and_update({"_id": ObjectId(id)}, {"$set": { "imageUrl": imageUrl }})
     return True
 
 
-async def deleteUser(id) -> bool:
-    db.users.find_one_and_delete({"_id": ObjectId(id)})
+async def deleteFilm(id) -> bool:
+    db.film.find_one_and_delete({"_id": ObjectId(id)})
     return True

@@ -5,4 +5,4 @@ class Settings(BaseSettings):
     mongo_url: str
     
     class Config:
-        env_file = "app.media_service.config.env"
+        env_file = "mongo.env"

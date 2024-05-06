@@ -1,4 +1,4 @@
-from config.settings import Settings
+from ..config.settings import Settings
 from fastapi import APIRouter
 
 
