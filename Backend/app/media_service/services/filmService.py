@@ -22,7 +22,7 @@ async def updateFilm(id, data: Film) -> bool:
     return True
 
 async def savePicture(id, imageUrl: str) -> bool:
-    db.film.find_one_and_update({"_id": ObjectId(id)}, {"$set": { "imageUrl": imageUrl }})
+    db.film.find_one_and_update({"_id": ObjectId(id)}, {"$set": { "cover_link": imageUrl }})
     return True
 
 
