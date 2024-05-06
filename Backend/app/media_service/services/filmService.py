@@ -9,7 +9,7 @@ async def getAllFilm() -> list:
 
 
 async def getById(id):
-    return serializeDict(db.film.find_one({"_id": ObjectId(id)}))    
+    return serializeDict(db.film.find_one({"_id": ObjectId(id)}))
 
 
 async def InsertFilm(data: Film):

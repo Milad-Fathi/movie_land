@@ -24,15 +24,15 @@ async def getById(id):
     return await resultVerification(id)
 
 
-@filmRoutes.post(base)
-async def InsertFilm(data: Film):
-    return await service.InsertFilm(data)
+# @filmRoutes.post(base, response_model=None)
+# async def InsertFilm(data: Film):
+#     return await service.InsertFilm(data)
 
-@filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
-async def updateFilm(id, data: Film):
-    await resultVerification(id)
-    done : bool = await service.updateFilm(id,data);
-    return getResponse(done, errorMessage="An error occurred while editing the film information.")
+# @filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
+# async def updateFilm(id, data: Film):
+#     await resultVerification(id)
+#     done : bool = await service.updateFilm(id,data);
+#     return getResponse(done, errorMessage="An error occurred while editing the film information.")
 
 
 @filmRoutes.delete(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
