@@ -6,6 +6,7 @@ from .utils import getResponse, riseHttpExceptionIfNotFound
 from ..helper.save_picture import save_picture
 from ..services import filmService as service
 from fastapi import APIRouter
+from pydantic import BaseModel, Field
 
 filmRoutes = APIRouter()
 base = '/film/'
@@ -13,6 +14,20 @@ UploadImage = f'{base}image-upload/'
 
 _notFoundMessage = "Could not find user with the given Id."
 
+
+class filmRequest(BaseModel):
+    title: str=Field(min_length=1)
+    description: str = Field(min_length=5, max_length=250)
+    rating: int = Field(gt=0, lt=6)
+    cover_link: str = Field(min_length=1)
+    trailer_link: str = Field(min_length=1)
+    date: str = Field(min_length=1)
+    budget: int = Field(gt=0)
+    language:str = Field(min_length=1)
+    duration: int = Field(gt=0)
+    article_link :str = Field(min_length=1)
+
+    
 
 @filmRoutes.get(base)
 async def getAllFilm():
@@ -24,21 +39,21 @@ async def getById(id):
     return await resultVerification(id)
 
 
-# @filmRoutes.post(base, response_model=None)
-# async def InsertFilm(data: Film):
-#     return await service.InsertFilm(data)
+@filmRoutes.post(base, response_model=None)
+async def InsertFilm(data: filmRequest):
+    return await service.InsertFilm(data)
 
-# @filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
-# async def updateFilm(id, data: Film):
-#     await resultVerification(id)
-#     done : bool = await service.updateFilm(id,data);
-#     return getResponse(done, errorMessage="An error occurred while editing the film information.")
+@filmRoutes.put(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
+async def updateFilm(id, data: filmRequest):
+    await resultVerification(id)
+    done : bool = await service.updateFilm(id,data) #*
+    return getResponse(done, errorMessage="An error occurred while editing the film information.")
 
 
 @filmRoutes.delete(base+'{id}', status_code=status.HTTP_204_NO_CONTENT)
 async def deleteFilm(id):
     await resultVerification(id)
-    done : bool = await service.deleteFilm(id);
+    done : bool = await service.deleteFilm(id) #*
     return getResponse(done, errorMessage="There was an error.")   
 
 
