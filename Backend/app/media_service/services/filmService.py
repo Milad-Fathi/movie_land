@@ -1,6 +1,6 @@
 from bson import ObjectId
 from ..config.db import db
-from app.media_service.routes.filmRoute import filmRequest
+from app.models import Film
 from ..schemas.serializeObject import serializeDict, serializeList
 
 
@@ -12,12 +12,12 @@ async def getById(id):
     return serializeDict(db.film.find_one({"_id": ObjectId(id)}))
 
 
-async def InsertFilm(data: filmRequest):
+async def InsertFilm(data: Film):
     result = db.film.insert_one(dict(data))
     return serializeDict(db.film.find_one({"_id": ObjectId(result.inserted_id)}))
 
 
-async def updateFilm(id, data: filmRequest) -> bool:
+async def updateFilm(id, data: Film) -> bool:
     db.film.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(data)})
     return True
 
