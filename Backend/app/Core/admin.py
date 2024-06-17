@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, Path
 from starlette import status
 from app.database import SessionLocal
-from app.models import Film, Genre, Person
+from app.models import Film, Person
 from app.IAM.auth import get_current_user
 
 # from database import SessionLocal
