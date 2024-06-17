@@ -39,27 +39,20 @@ class Message(Base):
 
 
 
-class FilmBase(BaseModel):
-    title: str
-    description: Optional[str] = None
-    rating: int
-    cover_link: str
-    trailer_link: str
-    date: Optional[str] = None
-    budget: int
-    language: str
-    duration: int
-    article_link: str
+class Film(Base):
+    __tablename__ = 'film'
 
-# Convert SQLAlchemy model to Pydantic model
-class FilmCreate(FilmBase):
-    pass
-
-class Film(FilmBase):
-    id: int
-
-    class Config:
-        orm_mode = True
+    id = Column(INTEGER, primary_key=True, index=True)
+    title = Column(String, unique=True)
+    description = Column(String)
+    rating = Column(INTEGER)
+    cover_link = Column(String, unique=True)
+    trailer_link = Column(String, unique=True)
+    date = Column(String)
+    budget = Column(INTEGER)
+    language = Column(String)
+    duration = Column(INTEGER)
+    article_link = Column(String, unique=True)
 
 
 
