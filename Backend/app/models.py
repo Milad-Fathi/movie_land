@@ -53,6 +53,10 @@ class Film(Base):
     language = Column(String)
     duration = Column(INTEGER)
     article_link = Column(String, unique=True)
+    
+    @classmethod
+    def update_cover_link(cls, film_id, new_cover_link):
+        cls.query.filter_by(id=film_id).update({"cover_link": new_cover_link})
 
 
 

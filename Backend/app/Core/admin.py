@@ -1,12 +1,12 @@
-
 from typing import Annotated
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Depends, HTTPException, Path
+from fastapi import APIRouter, Depends, HTTPException, Path, UploadFile, File
 from starlette import status
 from app.database import SessionLocal
 from app.models import Film, Person
 from app.IAM.auth import get_current_user
+from ..media_service.config.db import db
 
 # from database import SessionLocal
 # from models import Film
@@ -135,3 +135,35 @@ async def delete_person(admin: user_dependency,
         db.query(Person).filter(Person.user_name == user_name).delete()
 
         db.commit()
+
+
+
+
+# image
+
+@router.post("/uploadImage/{film_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def upload_image(db: db_dependency, film_id: int, file: UploadFile = File(...)):
+    content_type = file.content_type
+    filename = file.filename
+    # Store the image in MongoDB
+    # result = films_collection.update_one(
+    #     {"id": film_id},
+    #     {"$set": {"cover_link": f"images/{filename}"}}  # Assuming you're saving the image in a directory named 'images'
+    # )
+    db.film.insert_one(
+        {"id": film_id},
+        {"$set": {"cover_link": f"static/{filename}"}}  # Assuming you're saving the image in a directory named 'images'
+    )
+    # if result.modified_count > 0:
+        # Optionally, call the classmethod to update the cover_link in the database
+    film_model = db.query(Film).filter(Film.id == film_id)
+    if film_model is not None:
+        film_model.cover_link = f"static/{filename}"
+        db.add(film_model)
+        db.commit()
+        return {"message": "image uploaded successfully"}
+    
+    # Film.update_cover_link(film_id, f"images/{filename}")
+    return {"message": "Sth is not True"}
+    # else:
+    #     return {"error": "Film not found"}
