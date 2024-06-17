@@ -5,8 +5,8 @@ from app.IAM import auth
 from app.Core import home, admin
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.media_service.routes.filmRoute import filmRoutes
-from app.media_service.routes.defaultRoute import defaultRoute
+# from app.media_service.routes.filmRoute import filmRoutes
+# from app.media_service.routes.defaultRoute import defaultRoute
 
 
 app = FastAPI()
@@ -27,5 +27,5 @@ models.Base.metadata.create_all(bind=engine)
 app.include_router(auth.router)
 app.include_router(home.router)
 app.include_router(admin.router)
-app.include_router(filmRoutes, tags=['Film'], prefix='/api/film')
-app.include_router(defaultRoute)
+# app.include_router(filmRoutes, tags=['Film'], prefix='/api/film')
+# app.include_router(defaultRoute)

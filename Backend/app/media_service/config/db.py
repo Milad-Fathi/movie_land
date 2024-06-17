@@ -8,4 +8,6 @@ settings = Settings()
 
 MongoClient = MongoClient(settings.mongo_url)
 db = MongoClient.UserData
+films_collection = db["films"]  # Assuming you have a collection named 'films'
+
 

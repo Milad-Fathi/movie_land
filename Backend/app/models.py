@@ -2,6 +2,7 @@ from app.database import Base
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
+from sqlalchemy.orm import Session
 
 
 from sqlalchemy import Column, INTEGER, String, ForeignKey,Boolean,Text
@@ -54,10 +55,6 @@ class Film(Base):
     duration = Column(INTEGER)
     article_link = Column(String, unique=True)
     
-    @classmethod
-    def update_cover_link(cls, film_id, new_cover_link):
-        cls.query.filter_by(id=film_id).update({"cover_link": new_cover_link})
-
 
 
 class PersonLiked(Base):

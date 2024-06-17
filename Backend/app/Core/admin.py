@@ -1,15 +1,13 @@
 from typing import Annotated
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Depends, HTTPException, Path, UploadFile, File
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from starlette import status
 from app.database import SessionLocal
 from app.models import Film, Person
 from app.IAM.auth import get_current_user
-from ..media_service.config.db import db
+from ..media_service.config.db import films_collection
 
-# from database import SessionLocal
-# from models import Film
 
 router = APIRouter(
     prefix='/admin',
@@ -141,29 +139,22 @@ async def delete_person(admin: user_dependency,
 
 # image
 
-@router.post("/uploadImage/{film_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("/uploadImage/{film_id}")
 async def upload_image(db: db_dependency, film_id: int, file: UploadFile = File(...)):
     content_type = file.content_type
     filename = file.filename
+    cover_address = f"images/{filename}"
     # Store the image in MongoDB
-    # result = films_collection.update_one(
-    #     {"id": film_id},
-    #     {"$set": {"cover_link": f"images/{filename}"}}  # Assuming you're saving the image in a directory named 'images'
-    # )
-    db.film.insert_one(
+    films_collection.insert_one(
         {"id": film_id},
-        {"$set": {"cover_link": f"static/{filename}"}}  # Assuming you're saving the image in a directory named 'images'
+        {"$set": {"cover_link": cover_address}}  # Assuming you're saving the image in a directory named 'images'
     )
-    # if result.modified_count > 0:
-        # Optionally, call the classmethod to update the cover_link in the database
-    film_model = db.query(Film).filter(Film.id == film_id)
+    film_model = db.query(Film).filter(Film.id == film_id).first()
+    
     if film_model is not None:
-        film_model.cover_link = f"static/{filename}"
+        film_model.cover_link = cover_address
         db.add(film_model)
         db.commit()
-        return {"message": "image uploaded successfully"}
+        return {"message": "Image uploaded successfully"}
     
-    # Film.update_cover_link(film_id, f"images/{filename}")
-    return {"message": "Sth is not True"}
-    # else:
-    #     return {"error": "Film not found"}
+    return {"message": "sth happended !"}
