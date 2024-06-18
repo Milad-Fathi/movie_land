@@ -8,6 +8,9 @@ const routes: Routes = [
   {path: '', component: MainPageComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  // { path: '**', redirectTo: '' },
+  // { path: 'movie/:id' }
+
 ];
 
 @NgModule({

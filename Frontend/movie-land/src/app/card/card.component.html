@@ -1,7 +1,8 @@
-<mat-card class="mt-6 ml-2 h-[200px] bg-primary flex flex-row">
+<mat-card class="mt-6 ml-2 h-[200px] bg-primary flex flex-row" *ngFor="let movie of movies">
     <div class="flex-grow">
-        <mat-card-content class="text-white font-semibold text-right">Simple card</mat-card-content>        
+        <mat-card-content class="text-white font-extrabold text-right" [routerLink]="['/movies/', movie.id]">{{ movie.title }}</mat-card-content>
+        <mat-card-content class="text-white font-semibold text-right">{{ movie.description }}</mat-card-content>
     </div>
-    <img src="assets/img/__بادرگارد_.jpg" class="m-[10px] rounded-lg h-[180px] w-[500px]">
+    <img src="{{ movie.image_address }}" class="m-[10px] rounded-lg h-[180px] w-[500px]">
 </mat-card>
 

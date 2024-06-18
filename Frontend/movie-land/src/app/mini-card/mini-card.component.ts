@@ -9,6 +9,7 @@ import { movie } from '../api-interface';
 export class MiniCardComponent {
   movies: movie[] = [
     {
+      id: 1,
       image_address: 'assets/img/ac-image-6D1646204108bf.jpg',
       title: 'inception',
       genre: 'action',
@@ -16,6 +17,7 @@ export class MiniCardComponent {
       description: 'perfect film'
     },
     {
+      id: 2,
       image_address: 'assets/img/17-1-22-109592346969.jpg',
       title: 'ماجرای نیمروز',
       genre: 'historical',
@@ -24,6 +26,7 @@ export class MiniCardComponent {
 
     },
     {
+      id: 3,
       image_address: 'assets/img/1394111008570371269954210.jpg',
       title: 'ایستاده در غبار',
       genre: 'action',
@@ -32,6 +35,7 @@ export class MiniCardComponent {
 
     },
     {
+      id: 4,
       image_address: 'assets/img/USUAL-SUSPECT-modernfilm.ir_.jpg',
       title: 'usual suspect',
       genre: 'neo-nevar',
@@ -40,6 +44,7 @@ export class MiniCardComponent {
 
     },
     {
+      id: 5,
       image_address: 'assets/img/ac-image-6D1646204108bf.jpg',
       title: 'inception',
       genre: 'action',
@@ -48,6 +53,7 @@ export class MiniCardComponent {
 
     },
     {
+      id: 6,
       image_address: 'assets/img/Screenshot 2024-01-11 105630.png',
       title: 'our-or',
       genre: 'comedy',
@@ -55,6 +61,5 @@ export class MiniCardComponent {
       description: 'the most funny and cool movie in world'
 
     },
-    
   ]
 }

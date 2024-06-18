@@ -22,6 +22,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MainCarouselComponent } from './main-carousel/main-carousel.component';
 import { MiniCardComponent } from './mini-card/mini-card.component';
 import { CardComponent } from './card/card.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { CardComponent } from './card/card.component';
     MainCarouselComponent,
     MiniCardComponent,
     CardComponent,
+    MovieDetailComponent,
   ],
   imports: [
     BrowserModule,
