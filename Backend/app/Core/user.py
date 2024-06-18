@@ -36,7 +36,7 @@ class CommentRequest(BaseModel):
 
 # to add comments
 @router.get("/addComment/", status_code=status.HTTP_200_OK)
-async def search_movie(db: db_dependency,
+async def add_comment(db: db_dependency,
                     film_title: str,
                     user: user_dependency,
                     comment_request: CommentRequest):
