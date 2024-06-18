@@ -51,7 +51,8 @@ async def search_movie(db: db_dependency,
 async def get_comment(db:db_dependency,
                       film_id: int):
     comment_person_model = db.query(PersonCommentFilm).filter(PersonCommentFilm.film_id == film_id).first()
-    comment_model = db.query(Comment).filter(Comment.id == comment_person_model.comment_id).first()
+    if comment_person_model is not None:
+        comment_model = db.query(Comment).filter(Comment.id == comment_person_model.comment_id).first()
     person_model = db.query(Person).filter(Person.id == comment_person_model.pesron_id)
     if comment_model is not None:
         return {"person_name": person_model.user_name, "text": comment_model.text, "date": comment_model.date}
