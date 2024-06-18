@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, Path
 from starlette import status
 from app.database import SessionLocal
-from app.models import Film, Genre, FilmGenre
+from app.models import Film, Comment,PersonCommentFilm, Person
 
 router = APIRouter(
     prefix='/home',
@@ -28,7 +28,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 # return top 5 film of the list 
 @router.get("/", status_code=status.HTTP_200_OK)
-async def read_all(db: db_dependency):
+async def read_top_five(db: db_dependency):
     return db.query(Film).limit(5).all()
 
 
@@ -47,5 +47,14 @@ async def search_movie(db: db_dependency,
 
 
 
-
+@router.get("/comments/", status_code= status.HTTP_200_OK)
+async def get_comment(db:db_dependency,
+                      film_id: int):
+    comment_person_model = db.query(PersonCommentFilm).filter(PersonCommentFilm.film_id == film_id).first()
+    if comment_person_model is not None:
+        comment_model = db.query(Comment).filter(Comment.id == comment_person_model.comment_id).first()
+    person_model = db.query(Person).filter(Person.id == comment_person_model.pesron_id)
+    if comment_model is not None:
+        return {"person_name": person_model.user_name, "text": comment_model.text, "date": comment_model.date}
+    raise HTTPException(status_code=404, detail="comment not found")
 

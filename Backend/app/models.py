@@ -17,7 +17,7 @@ class Person(Base):
     hashed_password = Column(String)
     role = Column(String)
     email = Column(String, unique=True)
-    phone_number = Column(INTEGER)
+    phone_number = Column(String)
     is_active = Column(Boolean, default=False)
 
 
