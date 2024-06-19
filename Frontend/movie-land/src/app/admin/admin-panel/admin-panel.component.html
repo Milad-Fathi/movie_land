@@ -1,0 +1,38 @@
+<div class="flex flex-col justify-start items-end rounded-md bg-gray-300 h-auto m-5">
+    <div class="clear">
+
+    </div>
+    <mat-form-field class="w-52">
+        <h3 class="text-xl font-bold text-end">
+            عنوان
+        </h3>
+        <textarea matInput placeholder="عنوان   " class="text-end w-full h-[50px] rounded-md"></textarea>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <h3 class="text-xl font-bold text-end">
+            توضیحات
+        </h3>
+        <textarea matInput placeholder=" توضیحات  " class="text-end w-full h-[100px] rounded-md"></textarea>
+    </mat-form-field>
+    <mat-form-field class="w-32">
+        <h3 class="text-xl font-bold text-end">
+            نمره
+        </h3>
+        <textarea matInput placeholder=" نمره  " class="text-end w-full h-[50px] rounded-md"></textarea>
+    </mat-form-field>
+    <mat-form-field class="w-32">
+        <h3 class="text-xl font-bold text-end">
+            زمان
+        </h3>
+        <textarea matInput placeholder=" زمان  " class="text-end w-full h-[50px] rounded-md"></textarea>
+    </mat-form-field>
+
+    <button mat-flat-button mat-raised-button color="primary" class="mr-4 mb-4">ذخیره</button>
+</div>
+
+<div class="flex flex-col justify-start items-end rounded-md bg-gray-300 h-auto m-5" *ngFor="let movie of movies">
+    <img src="{{ movie.image_address }}" class="rounded-full w-[80px] h-[80px] m-2">
+    <h5 class="m-2 text-end text-xl font-bold mb-2 mr-10">{{ movie.title }}</h5>
+    <p class="text-end mr-5 m-2">{{ movie.description }}</p>
+    <button class="rounded-md bg-red-700 p-2 m-2 text-white font-bold hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300">حذف </button>
+</div>

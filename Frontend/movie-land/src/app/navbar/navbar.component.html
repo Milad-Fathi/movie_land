@@ -3,10 +3,13 @@
         <button mat-icon-button class="flex items-center justify-end mr-5" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>    
-      <span>Movie-Land</span>
+      <span [routerLink]="['/']">Movie-Land</span>
       <span class="flex-grow"></span>
       <button class="mr-5">
         <mat-icon>home</mat-icon>
+      </button>
+      <button>
+        <img src="assets\icon-png\login.png" [routerLink]="['/login']" class="w-[25px] h-[25px] m-2">      
       </button>
     </mat-toolbar-row>
 </mat-toolbar>
