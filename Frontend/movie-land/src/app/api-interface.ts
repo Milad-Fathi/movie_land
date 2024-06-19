@@ -13,3 +13,9 @@ export interface movie {
     rating: string
     description: string
 }
+
+export interface Comment {
+    id: number
+    date: string
+    text: string
+}

@@ -24,6 +24,7 @@ import { MiniCardComponent } from './mini-card/mini-card.component';
 import { CardComponent } from './card/card.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CommentCardComponent } from './comment-card/comment-card.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CardComponent,
     MovieDetailComponent,
     NotFoundComponent,
+    CommentCardComponent,
   ],
   imports: [
     BrowserModule,
