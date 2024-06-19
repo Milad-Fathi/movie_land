@@ -26,6 +26,7 @@ import { CardComponent } from './card/card.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
+import { CommentInputBoxComponent } from './comment-input-box/comment-input-box.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { CommentCardComponent } from './comment-card/comment-card.component';
     MovieDetailComponent,
     NotFoundComponent,
     CommentCardComponent,
+    CommentInputBoxComponent,
   ],
   imports: [
     BrowserModule,
