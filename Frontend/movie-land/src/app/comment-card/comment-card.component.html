@@ -1,7 +1,5 @@
-<!-- <mat-card class="mt-6 ml-2 h-[200px] bg-primary flex flex-row" (click)="scrollTop()" [routerLink]="['movie',movie.id]" *ngFor="let movie of movies">
-    <div class="flex-grow">
-        <mat-card-content class="text-white font-extrabold text-right" [routerLink]="['/movies/', movie.id]">{{ movie.title }}</mat-card-content>
-        <mat-card-content class="text-white font-semibold text-right">{{ movie.description }}</mat-card-content>
-    </div>
-    <img src="{{ movie.image_address }}" class="m-[10px] rounded-lg h-[180px] w-[500px]">
-</mat-card> -->
+<div class="flex flex-col justify-start items-end rounded-md bg-gray-300 h-auto m-5" *ngFor="let comment of comments">
+    <img src="assets\icon-png\profile-user_64572.png" class="w-[25px] h-[25px] m-2">
+    <h5 class="m-2 text-end text-xl font-bold mb-2 mr-10">{{ comment.id }}</h5>
+    <p class="text-end mr-5 m-2">{{ comment.text }}</p>
+</div>

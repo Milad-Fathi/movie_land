@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
 
 import { CarouselModule } from '@coreui/angular';
 
@@ -54,6 +55,7 @@ import { CommentCardComponent } from './comment-card/comment-card.component';
     MatFormFieldModule,
     MatButtonModule,
     CarouselModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
