@@ -151,7 +151,8 @@ async def create_user(db: db_dependency,
         db.commit()
 
         create_code(str(create_user_model.id))
-        return create_user_model.id
+        # return create_user_model.id
+        return create_user_model
     else:
         return{"msg":"The username is already existing!!!"}
 
@@ -176,7 +177,8 @@ async def create_admin(db: db_dependency,
         db.commit()
 
         create_code(str(create_admin_model.id))
-        return create_admin_model.id
+        # return create_admin_model.id
+        return create_admin_model
     else:
         return{"msg":"The username is already existing!!!"}
 

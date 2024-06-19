@@ -52,6 +52,8 @@ async def add_movie(admin: user_dependency,
         film_model = Film(**film_request.model_dump())
         db.add(film_model)
         db.commit()
+    
+    return film_model
 
 
 @router.put("/updateFilm/", status_code=status.HTTP_204_NO_CONTENT)
@@ -82,6 +84,8 @@ async def update_movie(admin: user_dependency,
 
         db.add(film_model)
         db.commit()
+    
+    return film_model
 
 
 @router.delete("/deleteFilm/",status_code=status.HTTP_204_NO_CONTENT)
