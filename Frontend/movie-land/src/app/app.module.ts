@@ -12,6 +12,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { CarouselModule } from '@coreui/angular';
 
@@ -27,6 +28,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
 import { CommentInputBoxComponent } from './comment-input-box/comment-input-box.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { CommentInputBoxComponent } from './comment-input-box/comment-input-box.
     NotFoundComponent,
     CommentCardComponent,
     CommentInputBoxComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { CommentInputBoxComponent } from './comment-input-box/comment-input-box.
     MatButtonModule,
     CarouselModule,
     MatListModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
