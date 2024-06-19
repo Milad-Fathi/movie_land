@@ -18,38 +18,6 @@ export class MovieDetailComponent {
     image_address: "assets/img/ac-image-6D1646204108bf.jpg"
   }
 
-  comments: Comment[] = [
-  {
-    id: 1,
-    date: "2023/10/01",
-    text: "string",
-
-  },
-  {
-    id: 2,
-    date: "2023/10/01",
-    text: "string",
-
-  },
-  {
-    id: 3,
-    date: "2023/10/01",
-    text: "string",
-
-  },
-  {
-    id: 4,
-    date: "2023/10/01",
-    text: "string",
-
-  },
-  {
-    id: 5,
-    date: "2023/10/01",
-    text: "string",
-
-  },
-]
   incrementLike(): void{
     this.like++
   }

@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
 
 import { CarouselModule } from '@coreui/angular';
 
@@ -25,6 +26,7 @@ import { CardComponent } from './card/card.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
+import { CommentInputBoxComponent } from './comment-input-box/comment-input-box.component';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { CommentCardComponent } from './comment-card/comment-card.component';
     MovieDetailComponent,
     NotFoundComponent,
     CommentCardComponent,
+    CommentInputBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { CommentCardComponent } from './comment-card/comment-card.component';
     MatFormFieldModule,
     MatButtonModule,
     CarouselModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
