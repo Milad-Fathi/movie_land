@@ -1,6 +1,8 @@
 from app.database import Base
-
-# from database import Base
+from pydantic import BaseModel
+from typing import Optional
+from datetime import datetime
+from sqlalchemy.orm import Session
 
 
 from sqlalchemy import Column, INTEGER, String, ForeignKey,Boolean,Text
@@ -15,7 +17,7 @@ class Person(Base):
     hashed_password = Column(String)
     role = Column(String)
     email = Column(String, unique=True)
-    phone_number = Column(INTEGER)
+    phone_number = Column(String)
     is_active = Column(Boolean, default=False)
 
 
@@ -52,7 +54,7 @@ class Film(Base):
     language = Column(String)
     duration = Column(INTEGER)
     article_link = Column(String, unique=True)
-
+    
 
 
 class PersonLiked(Base):

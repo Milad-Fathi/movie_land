@@ -6,9 +6,16 @@ export interface User {
 }
 
 export interface movie {
+    id: number
     image_address: string
     title: string
     genre: string
     rating: string
     description: string
+}
+
+export interface Comment {
+    id: number
+    date: string
+    text: string
 }

@@ -2,5 +2,5 @@
     <span class="text-2xl font-semibold text-slate-50 mb-10">ثبت نام</span>
     <input [(ngModel)]="user.phonenumber" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" 9123456789">    
     <input [(ngModel)]="user.password" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" رمز عبور" [type]="false ? 'password' : 'text'">
-    <button (click)="login" mat-raised-button color="primary" class="text-2xl font-semibold text-slate-50">ورود</button>
+    <button (click)="login()" mat-raised-button color="primary" class="text-2xl font-semibold text-slate-50">ورود</button>
 </div>

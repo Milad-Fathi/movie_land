@@ -1,4 +1,4 @@
-version: "3.10"
+version: "3.9"
 services:
   web:
     image: movieland
@@ -13,6 +13,18 @@ services:
      - redis
     env_file:
      - .env
+     - mongo.env
+     
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+
   postgresql:
    container_name: pg-db
    image: postgres:15
@@ -47,6 +59,5 @@ volumes:
   driver: local
  cache:
   driver: local
-
-
-
+ mongo-data:
+  driver: local
