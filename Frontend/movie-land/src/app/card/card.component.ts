@@ -32,4 +32,8 @@ export class CardComponent {
       description: 'perfect film'
     },
   ]
+
+  scrollTop(){
+    window.scrollTo(0,0)
+  }
 }

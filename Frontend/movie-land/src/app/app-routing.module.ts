@@ -3,13 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
-  // { path: '**', redirectTo: '' },
-  // { path: 'movie/:id' }
+  {path: 'movie/:id', component: MovieDetailComponent},
+  {path: '404', component: NotFoundComponent},
+  {path:'**' ,redirectTo:'404',pathMatch:'full'}
 
 ];
 

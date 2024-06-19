@@ -1,4 +1,4 @@
-<mat-card class="mt-6 ml-2 h-[200px] bg-primary flex flex-row" *ngFor="let movie of movies">
+<mat-card class="mt-6 ml-2 h-[200px] bg-primary flex flex-row" (click)="scrollTop()" [routerLink]="['movie',movie.id]" *ngFor="let movie of movies">
     <div class="flex-grow">
         <mat-card-content class="text-white font-extrabold text-right" [routerLink]="['/movies/', movie.id]">{{ movie.title }}</mat-card-content>
         <mat-card-content class="text-white font-semibold text-right">{{ movie.description }}</mat-card-content>
