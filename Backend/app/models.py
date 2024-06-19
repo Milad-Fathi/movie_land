@@ -46,14 +46,14 @@ class Film(Base):
     id = Column(INTEGER, primary_key=True, index=True)
     title = Column(String, unique=True)
     description = Column(String)
-    rating = Column(INTEGER)
-    cover_link = Column(String, unique=True)
-    trailer_link = Column(String, unique=True)
-    date = Column(String)
-    budget = Column(INTEGER)
-    language = Column(String)
-    duration = Column(INTEGER)
-    article_link = Column(String, unique=True)
+    rating = Column(INTEGER, nullable=True)
+    cover_link = Column(String, unique=True, nullable=True)
+    trailer_link = Column(String, unique=True, nullable=True)
+    date = Column(String, nullable=True)
+    budget = Column(INTEGER, nullable=True)
+    language = Column(String, nullable=True)
+    duration = Column(INTEGER, nullable=True)
+    article_link = Column(String, unique=True, nullable=True)
     
 
 
