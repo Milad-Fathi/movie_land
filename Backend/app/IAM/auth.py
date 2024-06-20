@@ -209,14 +209,14 @@ async def read_all_users(username:str,db:db_dependency):
 # to activate  user/admin
 @router.put("/activate_user/",status_code=status.HTTP_204_NO_CONTENT)
 async def activate_person(db: db_dependency,
-                          userid: str,
+                          userid: int,
                           code: str):
     person_model = db.query(Person).filter(Person.id == userid).first()
     if person_model is None:
         raise HTTPException(status_code=404, detail="user not found,sign up first!!!")
 
     # check the given code and make "activator" True ,if the code was correct 
-    activator = verify_code(code, userid)
+    activator = verify_code(code, str(userid))
 
 
     if activator:
