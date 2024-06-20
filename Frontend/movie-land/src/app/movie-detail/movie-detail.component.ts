@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { movie, Comment } from '../api-interface';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss']
 })
-export class MovieDetailComponent {
+export class MovieDetailComponent implements OnInit{
   like: number = 0
   test_movie: movie = {
     id: 50,
@@ -16,6 +17,15 @@ export class MovieDetailComponent {
     rating: "8.6",
     description: "ازم نخواه با تو بنومنم تو هیچی از من نمی دونی اگه بگم راز دلم رو تو هم کنارم نمی می نی ازم نخواه با تو بمونم هی هی تو هیچی از من نمی دونی اگه بگم راز دلم رو تو هم کنتارم نمی مونی تو هم کنارم نمی مونی",
     image_address: "assets/img/ac-image-6D1646204108bf.jpg"
+  }
+
+  constructor(
+    private router:Router,
+    private movieService:MovieService
+  ){}
+
+  ngOnInit(){
+    console.log(this.router.url.split('/')[2])
   }
 
   incrementLike(): void{

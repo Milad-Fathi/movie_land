@@ -1,15 +1,19 @@
 <mat-toolbar color="primary" class="top-0 shadow-2xl">
     <mat-toolbar-row>
-        <button mat-icon-button class="flex items-center justify-end mr-5" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
+        <button (click)="user() ? logOut() : null" mat-icon-button class="flex items-center justify-end mr-5" aria-label="Example icon-button with menu icon">
+            <mat-icon *ngIf="!user()">menu</mat-icon>
+            <mat-icon *ngIf="user()" >power_settings_new</mat-icon>
         </button>    
       <span [routerLink]="['/']">Movie-Land</span>
       <span class="flex-grow"></span>
-      <button class="mr-5">
+      <button routerLink="" class="mr-5 cursor-pointer">
         <mat-icon>home</mat-icon>
       </button>
-      <button>
+      <button *ngIf="!user()">
         <img src="assets\icon-png\login.png" [routerLink]="['/login']" class="w-[25px] h-[25px] m-2">      
       </button>
+      <p class="cursor-pointer" *ngIf="user()">
+        {{user().sub}} : کاربر
+      </p>
     </mat-toolbar-row>
 </mat-toolbar>

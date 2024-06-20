@@ -1,8 +1,8 @@
 export interface User {
-    phonenumber: number
+    phone_number: number | null
     email: string
     user_name: string
-    password: string
+    plain_text_password: string
 }
 
 export interface movie {

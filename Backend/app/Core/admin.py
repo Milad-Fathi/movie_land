@@ -151,7 +151,7 @@ async def upload_image(db: db_dependency, film_id: int, file: UploadFile = File(
     # Store the image in MongoDB
     films_collection.insert_one(
         {"id": film_id},
-        {"$set": {"cover_link": cover_address}}  # Assuming you're saving the image in a directory named 'images'
+        {"$set": {"cover_link": f'static/film/{cover_address}'}}  # Assuming you're saving the image in a directory named 'images'
     )
     film_model = db.query(Film).filter(Film.id == film_id).first()
     
