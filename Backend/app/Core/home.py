@@ -58,14 +58,45 @@ async def search_movie(db: db_dependency,
 
 
 
-@router.get("/comments/", status_code= status.HTTP_200_OK)
+# @router.get("/comments/", status_code= status.HTTP_200_OK)
+# async def get_comment(db:db_dependency,
+#                       film_id: int):
+#     comment_person_model = db.query(PersonCommentFilm).filter(PersonCommentFilm.film_id == film_id).all()
+#     if comment_person_model is not None:
+#         comment_model = db.query(Comment).filter(Comment.id == comment_person_model.comment_id).all()
+#     person_model = db.query(Person).filter(Person.id == comment_person_model.pesron_id)
+#     if comment_model is not None:
+#         return {"person_name": person_model.user_name, "text": comment_model.text, "date": comment_model.date}
+#     raise HTTPException(status_code=404, detail="comment not found")
+
+
+
+# return all comments info for film with given film_id
+@router.get("/comments-info/{film_id}", status_code= status.HTTP_200_OK)
 async def get_comment(db:db_dependency,
                       film_id: int):
-    comment_person_model = db.query(PersonCommentFilm).filter(PersonCommentFilm.film_id == film_id).first()
-    if comment_person_model is not None:
-        comment_model = db.query(Comment).filter(Comment.id == comment_person_model.comment_id).first()
-    person_model = db.query(Person).filter(Person.id == comment_person_model.pesron_id)
-    if comment_model is not None:
-        return {"person_name": person_model.user_name, "text": comment_model.text, "date": comment_model.date}
-    raise HTTPException(status_code=404, detail="comment not found")
+    comment_model = db.query(PersonCommentFilm).filter(PersonCommentFilm.film_id == film_id).all()
+    return comment_model
+
+
+
+# return all comments content for comment with given comment_id
+@router.get("/comments-content/{comment_id}", status_code= status.HTTP_200_OK)
+async def get_comment(db:db_dependency,
+                      comment_id: int):
+    comment_model = db.query(Comment).filter(Comment.id == comment_id).first()
+    return comment_model
+
+
+
+
+# return users info with given user_id
+@router.get("/read-user/{user_id}", status_code= status.HTTP_200_OK)
+async def get_user(db:db_dependency,
+                      user_id: int):
+    user_model = db.query(Person).filter(Person.id == user_id).first()
+    return user_model
+
+
+
 
