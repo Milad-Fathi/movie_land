@@ -56,7 +56,7 @@ class PersonRequest(BaseModel):
     plain_text_password: str = Field(min_length=1)
     # role: str = Field(min_length=1)
     email: str = Field(min_length=1)
-    phone_number:str = Field(min_length=8)
+    phone_number:int = Field(gt=0)
     # is_active: bool = Field(default=False) 
     
 class Token(BaseModel):

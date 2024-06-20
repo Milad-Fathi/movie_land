@@ -47,6 +47,17 @@ async def search_movie(db: db_dependency,
 
 
 
+# return specific movie ,search by its id
+@router.get("/search/", status_code=status.HTTP_200_OK)
+async def search_movie(db: db_dependency,
+                    film_id: int):
+    film_model = db.query(Film).filter(Film.id == film_id).first()
+    if film_model is not None:
+        return film_model
+    raise HTTPException(status_code=404, detail="film not found")
+
+
+
 @router.get("/comments/", status_code= status.HTTP_200_OK)
 async def get_comment(db:db_dependency,
                       film_id: int):
