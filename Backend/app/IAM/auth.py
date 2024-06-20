@@ -225,7 +225,7 @@ async def activate_person(db: db_dependency,
         db.commit()
             
 
-@router.post("/generate_code",status_code=status.HTTP_200_OK)
+@router.get("/generate_code/{id}",status_code=status.HTTP_200_OK)
 async def generate_code(id):
     create_code(str(id))
 
