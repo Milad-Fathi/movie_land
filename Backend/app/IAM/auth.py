@@ -86,7 +86,7 @@ def authenticate_user(user_name: str, password: str, db):
 # to create token
 def create_access_token(user_name: str, person_id: int, role: str, expires_delta: timedelta):
     encode = {'sub': user_name, 'id': person_id, 'role': role}
-    expires = datetime.utcnow() + expires_delta
+    expires = datetime.now() + expires_delta
     encode.update({'exp': expires})
     return jwt.encode(encode, SECRET_KEY, algorithm=ALGORITHM)
 
