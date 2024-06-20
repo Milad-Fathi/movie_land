@@ -31,14 +31,14 @@ user_dependency = Annotated[dict, Depends(get_current_user)]
 class FilmRequest(BaseModel):
     title: str = Field(min_length=1)
     description: str = Field(min_length=5, max_length=250)
-    rating: int = Field(gt=0, lt=6 )
-    cover_link: str = Field(min_length=1)
-    trailer_link: str = Field(min_length=1 )
-    date: str = Field(min_length=1 )
-    budget: int = Field(gt=0)
-    language:str = Field(min_length=1)
-    duration: int = Field(gt=0)
-    article_link: str = Field(min_length=1)
+    rating: int  =None
+    cover_link: str  =None
+    trailer_link: str  =None
+    date: str  =None
+    budget: int  =None
+    language:str  =None
+    duration: int  =None
+    article_link: str =None
 
 
 @router.post("/addFilm", status_code=status.HTTP_201_CREATED)
@@ -53,7 +53,7 @@ async def add_movie(admin: user_dependency,
         db.add(film_model)
         db.commit()
     
-    return film_model
+    return film_model.id
 
 
 @router.put("/updateFilm/", status_code=status.HTTP_204_NO_CONTENT)

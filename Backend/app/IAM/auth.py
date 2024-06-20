@@ -37,7 +37,7 @@ ALGORITHM = 'HS256'
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token')
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl='api/auth/token')
 
 
 def get_db():
@@ -225,7 +225,7 @@ async def activate_person(db: db_dependency,
         db.commit()
             
 
-@router.get("/generate_code",status_code=status.HTTP_200_OK)
+@router.post("/generate_code",status_code=status.HTTP_200_OK)
 async def generate_code(id):
     create_code(str(id))
 
