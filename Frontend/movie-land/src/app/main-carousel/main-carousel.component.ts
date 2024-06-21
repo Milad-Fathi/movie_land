@@ -14,7 +14,7 @@ export class MainCarouselComponent implements OnInit {
   ngOnInit(): void {
     this.slides[0] = {
       id: 0,
-      src: 'assets/img/__بادرگارد_.jpg',
+      src: 'assets/img/Paddington-2-2017.jpg',
       title: 'First slide',
       subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
     };
@@ -26,7 +26,7 @@ export class MainCarouselComponent implements OnInit {
     }
     this.slides[2] = {
       id: 2,
-      src: 'assets/img/4118087.jpg',
+      src: 'assets/img/mov_10916_65199-b.jpg',
       title: 'Third slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
