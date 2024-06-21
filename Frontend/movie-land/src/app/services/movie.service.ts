@@ -47,4 +47,8 @@ export class MovieService {
   getAllMovies(){
     return this.http.get(`${this.base_api}home/all`)
   }
+  
+  getMovieById(id:number){
+    return this.http.get(`${this.base_api}home/search-id/?film_id=${id}`)
+  }
 }

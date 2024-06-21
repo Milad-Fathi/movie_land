@@ -19,3 +19,17 @@ export interface Comment {
     date: string
     text: string
 }
+
+export interface test_movie{
+    id: number
+    rating: string
+    trailer_link: string
+    budget: number
+    duration: number
+    title: string
+    description: string
+    cover_link: string
+    date: string
+    language: string
+    article_link: string
+}
