@@ -35,6 +35,8 @@ export class CommentInputBoxComponent implements OnInit{
         console.log("comment_test")
         console.log(response)
         this.comment = response
+        window.alert("نظر شما با موفقیت ثبت شد.")
+
       }
     )
 
