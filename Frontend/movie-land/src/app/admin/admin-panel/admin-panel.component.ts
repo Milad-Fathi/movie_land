@@ -46,4 +46,17 @@ export class AdminPanelComponent implements OnInit{
   checkImage(e:any){
     this.value.cover_link = e.target.files[0]
   }
+
+  deleteFilm(title:string){
+    this.MovieService.deleteMovieByTitle(title).subscribe(
+      (response)=>{
+        window.alert("فیلم مورد نظر حذف گردید.")
+        console.log(response)
+        this.movies.filter(movie => movie.title!=title)
+        window.location.reload()
+      },(err:any)=>{
+        window.alert("خطایی رخ داده است")
+      }
+    )
+  }
 }

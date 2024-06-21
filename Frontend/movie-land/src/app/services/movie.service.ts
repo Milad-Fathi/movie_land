@@ -51,4 +51,9 @@ export class MovieService {
   getMovieById(id:number){
     return this.http.get(`${this.base_api}home/search-id/?film_id=${id}`)
   }
+
+  deleteMovieByTitle(title:string){
+    let headers = this.setHeaders(this.globalSevice.accessToken())
+    return this.http.delete(`${this.base_api}admin/deleteFilm/?film_title=${title}`,{headers})
+  }
 }
