@@ -88,6 +88,7 @@ async def update_movie(admin: user_dependency,
     return film_model
 
 
+
 @router.delete("/deleteFilm/",status_code=status.HTTP_204_NO_CONTENT)
 async def delete_movie(admin: user_dependency,
                        db: db_dependency,
@@ -105,6 +106,27 @@ async def delete_movie(admin: user_dependency,
         db.query(Film).filter(Film.title == film_title).delete()
 
         db.commit()
+
+
+
+@router.delete("/deleteFilm-id/",status_code=status.HTTP_204_NO_CONTENT)
+async def delete_movie(admin: user_dependency,
+                       db: db_dependency,
+                       film_id: int):
+    
+    if (admin is None) or (admin.get('user_role') != "admin"):
+        raise HTTPException(status_code=401,detail='Authentication Failed')
+    elif admin.get('user_role') == "admin":
+        
+        film_model = db.query(Film).filter(Film.title == film_id).first()
+
+        if film_model is None:
+            raise HTTPException(status_code=404, detail="Film not found")
+        
+        db.query(Film).filter(Film.title == film_id).delete()
+
+        db.commit()
+
 
 
 # read all users and admins
