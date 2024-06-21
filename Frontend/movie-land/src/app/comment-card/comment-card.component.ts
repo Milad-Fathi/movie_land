@@ -9,31 +9,31 @@ import { Comment } from '../api-interface';
 export class CommentCardComponent {
   comments: Comment[] = [
     {
-      id: 1,
+      // id: 1,
       date: "2023/10/01",
       text: "string",
   
     },
     {
-      id: 2,
+      // id: 2,
       date: "2023/10/01",
       text: "string",
   
     },
     {
-      id: 3,
+      // id: 3,
       date: "2023/10/01",
       text: "string",
   
     },
     {
-      id: 4,
+      // id: 4,
       date: "2023/10/01",
       text: "string",
   
     },
     {
-      id: 5,
+      // id: 5,
       date: "2023/10/01",
       text: "string",
   
