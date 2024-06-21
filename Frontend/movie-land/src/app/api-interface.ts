@@ -15,6 +15,7 @@ export interface movie {
 }
 
 export interface Comment {
+    id: number
     date: string
     text: string
 }

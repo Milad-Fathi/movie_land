@@ -14,6 +14,11 @@ export class CommentService {
     private http:HttpClient,
 
   ) { }
+
+  getAllComments(){
+    return this.http.get(`${this.base_api}user/all-comments`)
+  }
+
   addComment(id:number ,data:any){
     let headers = this.setHeaders(this.globalSevice.accessToken())
     return this.http.post(`${this.base_api}user/addComment/?film_id=${id}`,data,{headers}).pipe(
