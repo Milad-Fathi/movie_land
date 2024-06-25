@@ -31,14 +31,14 @@ user_dependency = Annotated[dict, Depends(get_current_user)]
 class FilmRequest(BaseModel):
     title: str = Field(min_length=1)
     description: str = Field(min_length=5, max_length=250)
-    rating: int = Field(gt=0, lt=6 )
-    cover_link: str = Field(min_length=1)
-    trailer_link: str = Field(min_length=1 )
-    date: str = Field(min_length=1 )
-    budget: int = Field(gt=0)
-    language:str = Field(min_length=1)
-    duration: int = Field(gt=0)
-    article_link: str = Field(min_length=1)
+    rating: int  =None
+    cover_link: str  =None
+    trailer_link: str  =None
+    date: str  =None
+    budget: int  =None
+    language:str  =None
+    duration: int  =None
+    article_link: str =None
 
 
 @router.post("/addFilm", status_code=status.HTTP_201_CREATED)
@@ -53,7 +53,7 @@ async def add_movie(admin: user_dependency,
         db.add(film_model)
         db.commit()
     
-    return film_model
+    return film_model.id
 
 
 @router.put("/updateFilm/", status_code=status.HTTP_204_NO_CONTENT)
@@ -88,6 +88,39 @@ async def update_movie(admin: user_dependency,
     return film_model
 
 
+
+
+@router.put("/updateFilm-id/", status_code=status.HTTP_204_NO_CONTENT)
+async def update_movie(admin: user_dependency,
+                       db: db_dependency,
+                       film_request: FilmRequest,
+                       film_id: str):
+    
+    if (admin is None) or (admin.get('user_role') != "admin"):
+        raise HTTPException(status_code=401,detail='Authentication Failed')
+    elif admin.get('user_role') == "admin":
+
+        film_model = db.query(Film).filter(Film.id == film_id).first()
+
+        if film_model is None:
+            raise HTTPException(status_code=404, detail="film not found")
+        
+        film_model.budget = film_request.budget
+        film_model.cover_link = film_request.cover_link
+        film_model.date = film_request.date
+        film_model.description = film_request.description
+        film_model.duration = film_request.duration
+        film_model.language = film_request.language
+        film_model.trailer_link = film_request.trailer_link
+        film_model.rating = film_request.rating
+        film_model.title = film_request.title
+        film_model.article_link = film_request.article_link
+
+        db.add(film_model)
+        db.commit()
+    
+    return film_model
+
 @router.delete("/deleteFilm/",status_code=status.HTTP_204_NO_CONTENT)
 async def delete_movie(admin: user_dependency,
                        db: db_dependency,
@@ -105,6 +138,27 @@ async def delete_movie(admin: user_dependency,
         db.query(Film).filter(Film.title == film_title).delete()
 
         db.commit()
+
+
+
+@router.delete("/deleteFilm-id/",status_code=status.HTTP_204_NO_CONTENT)
+async def delete_movie(admin: user_dependency,
+                       db: db_dependency,
+                       film_id: int):
+    
+    if (admin is None) or (admin.get('user_role') != "admin"):
+        raise HTTPException(status_code=401,detail='Authentication Failed')
+    elif admin.get('user_role') == "admin":
+        
+        film_model = db.query(Film).filter(Film.id == film_id).first()
+
+        if film_model is None:
+            raise HTTPException(status_code=404, detail="Film not found")
+        
+        db.query(Film).filter(Film.id == film_id).delete()
+
+        db.commit()
+
 
 
 # read all users and admins
@@ -151,7 +205,7 @@ async def upload_image(db: db_dependency, film_id: int, file: UploadFile = File(
     # Store the image in MongoDB
     films_collection.insert_one(
         {"id": film_id},
-        {"$set": {"cover_link": cover_address}}  # Assuming you're saving the image in a directory named 'images'
+        {"$set": {"cover_link": f'static/film/{cover_address}'}}  # Assuming you're saving the image in a directory named 'images'
     )
     film_model = db.query(Film).filter(Film.id == film_id).first()
     

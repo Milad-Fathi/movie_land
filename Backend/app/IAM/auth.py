@@ -37,7 +37,7 @@ ALGORITHM = 'HS256'
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token')
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl='api/auth/token')
 
 
 def get_db():
@@ -56,7 +56,7 @@ class PersonRequest(BaseModel):
     plain_text_password: str = Field(min_length=1)
     # role: str = Field(min_length=1)
     email: str = Field(min_length=1)
-    phone_number:str = Field(min_length=8)
+    phone_number:int = Field(gt=0)
     # is_active: bool = Field(default=False) 
     
 class Token(BaseModel):
@@ -86,7 +86,7 @@ def authenticate_user(user_name: str, password: str, db):
 # to create token
 def create_access_token(user_name: str, person_id: int, role: str, expires_delta: timedelta):
     encode = {'sub': user_name, 'id': person_id, 'role': role}
-    expires = datetime.utcnow() + expires_delta
+    expires = datetime.now() + expires_delta
     encode.update({'exp': expires})
     return jwt.encode(encode, SECRET_KEY, algorithm=ALGORITHM)
 
@@ -209,14 +209,14 @@ async def read_all_users(username:str,db:db_dependency):
 # to activate  user/admin
 @router.put("/activate_user/",status_code=status.HTTP_204_NO_CONTENT)
 async def activate_person(db: db_dependency,
-                          userid: str,
+                          userid: int,
                           code: str):
     person_model = db.query(Person).filter(Person.id == userid).first()
     if person_model is None:
         raise HTTPException(status_code=404, detail="user not found,sign up first!!!")
 
     # check the given code and make "activator" True ,if the code was correct 
-    activator = verify_code(code, userid)
+    activator = verify_code(code, str(userid))
 
 
     if activator:
@@ -225,7 +225,7 @@ async def activate_person(db: db_dependency,
         db.commit()
             
 
-@router.get("/generate_code",status_code=status.HTTP_200_OK)
+@router.get("/generate_code/{id}",status_code=status.HTTP_200_OK)
 async def generate_code(id):
     create_code(str(id))
 

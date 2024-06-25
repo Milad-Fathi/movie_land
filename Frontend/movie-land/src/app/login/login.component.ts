@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from '../api-interface';
 import { AuthService } from '../services/auth.service';
+import { GlobalService } from '../services/global.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,22 +11,29 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
   user: User = {
-    phonenumber: 0,
+    phone_number: 0,
     email: '',
     user_name: '',
-    password: '',
+    plain_text_password: '',
 
   }
-  constructor(private authServices: AuthService){}
+  constructor(
+    private authServices: AuthService,
+    private globalService:GlobalService,
+    private router:Router
+  ){}
 
   login(){
-    this.authServices.login({user_name: this.user.user_name, email: this.user.email, phonenumber: this.user.phonenumber, plain_text_password: this.user.password}).subscribe(
+    this.authServices.login({username: this.user.user_name, password: this.user.plain_text_password}).subscribe(
       data => {
-        console.log(data)
+        this.globalService.setStorage('access',data.access)
+        this.globalService.setStorage('detail',JSON.stringify(data.tokenDetail))
+        this.router.navigate([''])
       },
       error => {
-        console.log(error)
+        window.alert('خطای رخ داده است')
       }
     )
   }
+  
 }

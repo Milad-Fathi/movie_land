@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../api-interface';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,33 +12,51 @@ export class SignupComponent {
   hide = true
   is_code_sended = false
   is_validate = false
+  successMassageStatus = false
 
   timer: any; // Timer reference
-  timerDuration = 2; // Timer duration in seconds
+  timerDuration = 5; // Timer duration in seconds
   remainingTime = 0; // Remaining time
   time_is_finished = false
+  userId:any
+  code:any;
 
   user: User = {
-    phonenumber: 0,
+    phone_number: null,
     email: '',
     user_name: '',
-    password: '',
+    plain_text_password: '',
 
   }
-  constructor(private authService: AuthService){}
+  constructor(
+    private authService: AuthService,
+    private router:Router
+  ){}
   
   signup(){
-    this.is_code_sended = true
     this.startTimer()
-
-    this.authService.signup({user_name: this.user.user_name, email: this.user.email, phonenumber: this.user.phonenumber, plain_text_password: this.user.password}).subscribe(
-      data => {
-        console.log(data)
-      },
-      error => {
-        console.log(error)
-      }
-    )
+    let u = this.user;
+    if(u.email!='' && u.user_name!='' && u.plain_text_password!='' && u.phone_number){
+      this.authService.signup({user_name: this.user.user_name, email: this.user.email, phone_number: this.user.phone_number?.toString(), plain_text_password: this.user.plain_text_password}).subscribe(
+        data => {
+          this.is_code_sended = true
+          this.userId = data.id
+          this.authService.getActivatedCode(this.userId).subscribe(
+            (response)=>{
+              console.log(response)
+            },
+            (error)=>{
+              window.alert('لطفا فیلدهارا پر کنید')
+            }
+          )
+        },
+        error => {
+          window.alert('خطایی رخ داده است')
+        }
+      )
+    }else{
+      window.alert('لطفا فیلدهارا پر کنید')
+    }
     
   }
 
@@ -56,12 +75,20 @@ export class SignupComponent {
   clearInterval(this.timer);
  }
 
- // Add a method to handle the validation code submission
  submitValidationCode() {
-    // Implement the logic to submit the validation code
-    // For example, call a service method to validate the code
-    console.log('Validation code submitted');
-    this.stopTimer(); // Stop the timer when validation is submitted
+    
+    this.stopTimer(); 
+    this.authService.activatedAccount({userid:this.userId,code:this.code}).subscribe(
+      (response)=>{
+        this.successMassageStatus = true
+        setTimeout(() => {
+          this.router.navigate(['/login'])
+        }, 3000);
+      },
+      (error)=>{
+        window.alert('لطفا فیلدهارا پر کنید')
+      }
+    )
  }
 
 }

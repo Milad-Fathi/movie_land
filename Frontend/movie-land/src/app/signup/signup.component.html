@@ -1,14 +1,16 @@
-<div *ngIf="!is_code_sended" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
+<div *ngIf="!is_code_sended && !successMassageStatus" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
     <span class="text-2xl font-semibold text-slate-50 mb-10">ثبت نام</span>
-    <input [ngModel]="user.phonenumber" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" 9123456789">    
-    <input class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" رمز عبور" [type]="hide ? 'password' : 'text'">
-    <button mat-raised-button color="primary" (click)="signup()" class="text-2xl font-semibold text-slate-50">ورود</button>
+    <input [(ngModel)]="user.email" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" info@info.com">    
+    <input [(ngModel)]="user.phone_number" type="number" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" 9123456789">    
+    <input [(ngModel)]="user.user_name" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" username">    
+    <input [(ngModel)]="user.plain_text_password" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96" placeholder=" رمز عبور" [type]="hide ? 'password' : 'text'">
+    <button mat-raised-button color="primary" (click)="signup()" class="text-2xl font-semibold text-slate-50"> مرحله بعد</button>
 </div>
 
-<div *ngIf="is_code_sended" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
+<div *ngIf="is_code_sended && !successMassageStatus" class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl">
     <span class="text-2xl font-semibold text-slate-50 mb-10">کد تایید</span>
-    <input type="text" placeholder=" کد تایید" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96">
-    <button mat-raised-button color="primary" (click)="submitValidationCode()" class="text-2xl font-semibold text-slate-50">ارسال کد تایید</button>
+    <input [(ngModel)]="code" type="text" placeholder=" کد تایید" class="bg-white opacity-100 rounded-md custom-placeholder mb-10 h-10 w-96">
+    <button mat-raised-button color="primary" (click)="submitValidationCode()" class="text-2xl font-semibold text-slate-50">ثبت نام</button>
     <mat-card *ngIf="!time_is_finished" class="mt-10">
         <mat-card-content>
             <p class="">زمان باقیمانده: {{remainingTime }} ثانیه</p>
@@ -21,4 +23,11 @@
             <span class="block sm:inline">زمان شما به پایان رسید </span>
         </mat-card-content>
     </mat-card>
+</div>
+<div class="flex flex-col items-center justify-center mx-auto w-1/2 p-5 mt-28 rounded-md bg-[#3e6ed5] shadow-2xl" *ngIf="submitValidationCode">
+    <p class="text-white text-center">
+        ثبت نام با موفقیت انجام شد 
+        <br>
+        در حال انتقال به صفحه ورود...
+    </p>
 </div>

@@ -1,8 +1,8 @@
 export interface User {
-    phonenumber: number
+    phone_number: number | null
     email: string
     user_name: string
-    password: string
+    plain_text_password: string
 }
 
 export interface movie {
@@ -18,4 +18,18 @@ export interface Comment {
     id: number
     date: string
     text: string
+}
+
+export interface test_movie{
+    id: number
+    rating: string
+    trailer_link: string
+    budget: number
+    duration: number
+    title: string
+    description: string
+    cover_link: string
+    date: string
+    language: string
+    article_link: string
 }

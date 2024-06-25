@@ -10,8 +10,8 @@ export class MiniCardComponent {
   movies: movie[] = [
     {
       id: 1,
-      image_address: 'assets/img/ac-image-6D1646204108bf.jpg',
-      title: 'inception',
+      image_address: 'assets/img/mov_10916_65199-b.jpg',
+      title: 'سگ را بجنبان',
       genre: 'action',
       rating: '8.2',
       description: 'perfect film'
@@ -45,8 +45,8 @@ export class MiniCardComponent {
     },
     {
       id: 5,
-      image_address: 'assets/img/ac-image-6D1646204108bf.jpg',
-      title: 'inception',
+      image_address: 'assets/img/images.jpg',
+      title: 'spider man',
       genre: 'action',
       rating: '8.2',
       description: 'perfect film'
@@ -54,11 +54,11 @@ export class MiniCardComponent {
     },
     {
       id: 6,
-      image_address: 'assets/img/Screenshot 2024-01-11 105630.png',
-      title: 'our-or',
-      genre: 'comedy',
+      image_address: 'assets/img/Mansour-Movie.jpg',
+      title: 'منصور',
+      genre: 'historical',
       rating: '9.2',
-      description: 'the most funny and cool movie in world'
+      description: 'a cool movie in world'
 
     },
   ]

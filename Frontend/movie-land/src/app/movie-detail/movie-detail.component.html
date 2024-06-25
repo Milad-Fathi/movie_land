@@ -9,13 +9,16 @@
             <span class="ml-10 mr-2 mt-1 text-cyan-600">{{ test_movie.rating }}</span>
             <img src="assets\icon-png\imdb_5968612.png" class="w-[30px] h-[30px]">
 
-            <span class="ml-10 mr-2 text-cyan-600">{{ test_movie.genre }}</span>
+            <span class="ml-10 mr-2 text-cyan-600">comedy</span>
             <img src="assets\icon-png\carnival-masks_154064.png" class="w-[30px] h-[30px]">
+
+            <a class="ml-10 mr-2 text-cyan-600" href="https://www.imdb.com/video/vi1211352601/?ref_=vi_tr_tr_vp_12">لینک تریلر</a>
+            <img src="assets\icon-png\link-hyperlink-icon.png" class="w-[30px] h-[30px]">
         </div>
     </div>
 
     <mat-card class="w-[400px] flex flex-col justify-end col-span-3">
-        <img src="{{ test_movie.image_address }}" alt="" class="rounded-lg p-3">
+        <img src="{{ test_movie.cover_link }}" alt="" class="rounded-lg p-3">
         <span class="text-center mb-2">{{ test_movie.title }}</span>
     </mat-card>
 </div>
